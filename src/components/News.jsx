@@ -36,7 +36,8 @@ export default function News({ category }) {
     setTimeout(() => {
       axios({
         method: "get",
-        url: "https://jsonplaceholder.typicode.com/posts", // test api
+        // Use jsonplacholder as a test api first since the the news api has limited calls
+        url: "https://jsonplaceholder.typicode.com/posts", 
         params: {
           _page: pageNum,
         },
