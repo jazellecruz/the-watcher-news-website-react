@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import axios from "axios";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
-import NewsItem from "./Newsitem";
+import NewsItem from "./NewsItem";
 import ErrorMessage from "./ErrorMessage"
 import Loading from "./Loading";
 

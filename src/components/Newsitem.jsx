@@ -24,7 +24,8 @@ export default function NewsItem(props) {
         component="img"
         alt="news-cover-img"
         height="190"
-        image={props.newsImg ? props.newsImg : dummyImg}
+        // replace the img first with news image before calling the news api
+        image={props.newsImg ? props.newsImg : dummyImg} 
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
@@ -53,4 +54,3 @@ export default function NewsItem(props) {
     </Card>
   );
 }
-//.substring(0, 150) + "..."
