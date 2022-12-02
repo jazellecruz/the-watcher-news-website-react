@@ -1,7 +1,7 @@
 
 # The Watcher
 
-## *Powered by* [</newscatcher>](https://newscatcherapi.com)
+## *Powered by* [<`/newscatcher`>](https://newscatcherapi.com)
 
 The Watcher delivers the latest global headlines reported by trusted and reliable news sources. 
 This project is made with React.js along with Material UI for a responsive UI, and Axios for calling Newscatcher's API.
