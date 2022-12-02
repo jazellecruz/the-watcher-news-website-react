@@ -36,7 +36,7 @@ export default function News({ category }) {
     setTimeout(() => {
       axios({
         method: "get",
-        url: "https://jsonplaceholder.typicode.com/posts", // use jsonplaceholder as our test api
+        url: "https://jsonplaceholder.typicode.com/posts", // test api
         params: {
           _page: pageNum,
         },
@@ -111,3 +111,5 @@ export default function News({ category }) {
       </Container>
   );
 }
+
+// newscatcher api: https://api.newscatcherapi.com/v2/latest_headlines?
