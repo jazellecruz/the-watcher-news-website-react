@@ -6,7 +6,8 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
-import dummyImg from "../assets/dummyImg.jpg"
+import { trimString } from "../helpers/helpers.js"
+
 
 export default function NewsItem(props) {
   
@@ -17,7 +18,7 @@ export default function NewsItem(props) {
       }
     },
   });
-
+  
   return (
     <Card>
       <CardMedia
@@ -25,7 +26,7 @@ export default function NewsItem(props) {
         alt="news-cover-img"
         height="190"
         // replace the img first with news image before calling the news api
-        image={props.newsImg ? props.newsImg : dummyImg} 
+        image={props.newsImg} 
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
@@ -34,7 +35,7 @@ export default function NewsItem(props) {
         <Typography variant="body2" 
           color="#cacaca" 
           sx={{textOverflow : "ellipsis"}}>
-          {props.newsExcerpt}
+          {trimString(props.newsExcerpt)}
         </Typography>
       </CardContent>
       <CardActions>
