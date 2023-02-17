@@ -5,6 +5,7 @@ import Grid from "@mui/material/Grid";
 import NewsItem from "./NewsItem";
 import ErrorMessage from "./ErrorMessage"
 import Loading from "./Loading";
+import { newsSources } from "../constants/constants"
 
 export default function News({ category }) {
 
@@ -13,7 +14,7 @@ export default function News({ category }) {
   const [hasMore, setHasMore] = useState(false);
   const [newsItems, setNewsItems] = useState([]);
   const [pageNum, setPageNum] = useState(1);
-
+  
   const observer = useRef();
   
   const lastItemRef = useCallback(node => { 
@@ -37,20 +38,28 @@ export default function News({ category }) {
       axios({
         method: "get",
         // Use jsonplacholder as a test api first since the the news api has limited calls
-        url: "https://jsonplaceholder.typicode.com/posts", 
+        url: "https://api.newscatcherapi.com/v2/latest_headlines", 
         params: {
-          _page: pageNum,
+          lang: "en",
+          topic: category,
+          page: pageNum,
+          page_size: 10,
+          ranked_only: true,
+          sources: newsSources
         },
+        headers: {
+          "x-api-key": process.env.REACT_APP_NEWS_API_KEY,
+        }
       })
       .then(res => {
         setNewsItems(prevVal => {
           
-          /* Visit https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set 
-           for the Set method */
-          return [...new Set([...prevVal, ...res.data])]
+        //   /* Visit https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set 
+        //    for the Set method */
+          return [...new Set([...prevVal, ...res.data.articles])]
         })
-        console.log(newsItems)
-        setHasMore(newsItems.length < 100)
+        // console.log(newsItems)
+        setHasMore(res.data.total_pages > 0)
         setLoading(false);
       })
       .catch(err => {
@@ -61,10 +70,10 @@ export default function News({ category }) {
     }, 2000)
   }, [pageNum, category]);  /* NOTE: IGNORE THE ESLINT WARNING! 
   Adding the newsItems as a dependency will result 
-  in calling the API in an infinite loop. */  
-
+  in calling the API in an infinite loop. */
   /** When user changes the category, remove the items from the 
   previous category and reset the pageNum to 1 */
+
   useEffect(() => {
     setNewsItems([]);
     setPageNum(1);
@@ -82,9 +91,9 @@ export default function News({ category }) {
                   ref={lastItemRef}> 
                   <NewsItem                  
                     newsTitle={item.title} 
-                    newsUrl={item.url} 
-                    newsImg={item.image}
-                    newsExcerpt={item.body}/>
+                    newsUrl={item.link} 
+                    newsImg={item.media}
+                    newsExcerpt={item.excerpt}/>
                   </Grid> 
                   );
                 } else {
@@ -94,9 +103,11 @@ export default function News({ category }) {
                     justifyContent="center" >
                   <NewsItem                  
                     newsTitle={item.title} 
-                    newsUrl={item.url} 
-                    newsImg={null}
-                    newsExcerpt={item.body}/>
+                    newsUrl={item.link} 
+                    newsImg={item.media}
+                    newsExcerpt={item.excerpt}
+                    key={item._id}
+                    />
                   </Grid> 
                   );
                 }
