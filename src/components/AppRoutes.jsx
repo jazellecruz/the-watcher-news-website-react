@@ -8,7 +8,7 @@ export default function MainRoutes() {
   return (
     <Routes>
       <Route exact path="/" element={<HomePage />} >
-        <Route path="" element={<News category="news" />}/>
+        <Route path="" element={<News category="world" />}/>
         <Route path="tech" element={<News category="tech" />} />
         <Route path="business" element={<News category="business" />}/>
         <Route path="politics" element={<News category="politics" />}/>
