@@ -229,6 +229,15 @@ body {
 
 }
 
+@media screen and (min-width: 1904px) {
+
+    .navbar {
+       width: 1904px;
+       margin: 0 auto;
+    }
+
+}
+
 body::-webkit-scrollbar {
     width: .3em;
 }
@@ -332,4 +341,13 @@ body::-webkit-scrollbar-thumb {
     font-weight: lighter;
     font-size: normal;
     font-size: 15.5px;
+}
+
+.source {
+    font-weight: 300;
+    font-style: italic;
+}
+
+.source a {
+    color: inherit;
 }
