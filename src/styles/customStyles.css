@@ -238,15 +238,15 @@ body {
 
 }
 
-body::-webkit-scrollbar {
+::-webkit-scrollbar {
     width: .3em;
 }
 
-body::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
     box-shadow: none;
 }
 
-body::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
     background-color: rgb(136, 136, 136);
     border-radius: 20px;
 }
