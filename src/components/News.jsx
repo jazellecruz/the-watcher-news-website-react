@@ -37,7 +37,6 @@ export default function News({ category }) {
     setTimeout(() => {
       axios({
         method: "get",
-        // Use jsonplacholder as a test api first since the the news api has limited calls
         url: "https://api.newscatcherapi.com/v2/latest_headlines", 
         params: {
           lang: "en",
@@ -53,12 +52,9 @@ export default function News({ category }) {
       })
       .then(res => {
         setNewsItems(prevVal => {
-          
-        //   /* Visit https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set 
-        //    for the Set method */
           return [...new Set([...prevVal, ...res.data.articles])]
-        })
-        // console.log(newsItems)
+        });
+
         setHasMore(res.data.total_pages > 0)
         setLoading(false);
       })
@@ -67,7 +63,7 @@ export default function News({ category }) {
         setLoading(false);
         console.log(err);
       })
-    }, 2000)
+    }, 1000)
   }, [pageNum, category]);  /* NOTE: IGNORE THE ESLINT WARNING! 
   Adding the newsItems as a dependency will result 
   in calling the API in an infinite loop. */
@@ -93,7 +89,10 @@ export default function News({ category }) {
                     newsTitle={item.title} 
                     newsUrl={item.link} 
                     newsImg={item.media}
-                    newsExcerpt={item.excerpt}/>
+                    newsExcerpt={item.excerpt}
+                    cleanUrl={item.clean_url}
+                    key={item._id}
+                    />
                   </Grid> 
                   );
                 } else {
@@ -106,6 +105,7 @@ export default function News({ category }) {
                     newsUrl={item.link} 
                     newsImg={item.media}
                     newsExcerpt={item.excerpt}
+                    cleanUrl={item.clean_url}
                     key={item._id}
                     />
                   </Grid> 
