@@ -55,7 +55,7 @@ export default function CenteredTabs() {
             variant={windowWidth > 700 ? "standard" :  "scrollable"} 
             centered={windowWidth > 700}
             >
-            <Tab label="General" to="" component={Link} />
+            <Tab label="World" to="" component={Link} />
             <Tab label="Tech" to="tech" component={Link} />
             <Tab label="Business" to="business" component={Link} />
             <Tab label="Politics" to="politics" component={Link} />
