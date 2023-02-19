@@ -37,6 +37,13 @@ export default function NewsItem(props) {
           sx={{textOverflow : "ellipsis"}}>
           {trimString(props.newsExcerpt)}
         </Typography>
+        <p className="source">Source:&#160;
+          <a href={`//${props.cleanUrl}`}
+             target="_blank" 
+             rel="noopener noreferrer">
+            {props.cleanUrl}
+          </a>
+        </p>
       </CardContent>
       <CardActions>
         <ThemeProvider theme={theme}>
